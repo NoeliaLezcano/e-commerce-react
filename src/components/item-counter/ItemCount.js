@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const ItemCounter = ({ stock, initial}) => {
+const ItemCounter = ({ stock, initial, setSotckSelected}) => {
   const [counter, setCounter] = useState(initial);
+
+  useEffect(() => {
+    setSotckSelected(counter);
+  }, [counter]);
 
   const minusCounter = () => {
     if (counter <= initial) return;

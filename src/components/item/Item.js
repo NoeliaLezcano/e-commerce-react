@@ -1,15 +1,26 @@
+import { useState } from "react";
 import ItemCounter from "../item-counter/ItemCount";
 
-const Item = ({name, author, price, id, setSelectedItem}) => {
-    const selectItem = () => setSelectedItem({ name, price, id })
-  return <div>
-      <h2>Título: {name} </h2>
-      <h2>Autor: {author}</h2>
-      <h2>Precio: ${price} </h2>
-      <ItemCounter stock={10} initial={1} />
-      <button onClick={selectItem}>Seleccionar producto</button>
-      <hr/>
-  </div>;
+const Item = ({ id, title, author, description, price, stock, setSelectedItem }) => {
+  const [sotckSelected, setSotckSelected] = useState(0);
+
+  const selectItem = () =>
+    setSelectedItem({ id, title, author, description, price, stock: sotckSelected });
+
+  return (
+    <>
+      <div>
+        <h2>Título: {title}</h2>
+        <h2>Autor: {author}</h2>
+        <h2>Descripción: {description}</h2>
+        <h2>Precio: ${price} </h2>
+        <ItemCounter stock={stock} initial={1} setSotckSelected={setSotckSelected} />
+        <button onClick={selectItem}>Seleccionar producto</button>
+      </div>
+      <hr />
+    </>
+  );
 };
 
 export default Item;
+

@@ -1,33 +1,47 @@
-import { useState } from "react";
-import Item from "../item/Item";
+import { useEffect, useState } from "react";
+import { productsAPI } from "../../helpers/promises";
+import ItemList from "../item-list/ItemList"
 
-const items = [
-    { id: "1", name: "El bosque de las cosas perdidas", price: "1820.00", author: "Ernshaw Shea" },
-    { id: "2", name: "Catedrales", price: "2550.99", author: "Piñeiro Claudia" },
-    { id: "3", name: "Strange", price: "2199.00", author: "Mirez Alex" },
-    { id: "4", name: "La paciente silencionsa", price: "3100.00", author: "Michaelides Alex" },
-  ];
 
 const ItemListContainer = () => {
-    const[selectedItem, setSelectedItem] = useState (null);
+  const[selectedItem, setSelectedItem] = useState (null);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const getProducts = async () => {
+    try {
+      const result = await productsAPI;
+      setProducts(result);
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      setLoading(false);
+      console.log("Finalización del consumo de la API productsAPI");
+    }
+  };
+
+  if (loading) {
+    return <h1>Cargando...</h1>;
+  }
 
   return (
       <div>
         <h3>Producto seleccionado: </h3>
-        <p>{selectedItem ? selectedItem.name : "Ninguno"}</p>
-        <p>{selectedItem ? selectedItem.price : "Ninguno"}</p>
-        <p>{selectedItem ? selectedItem.id : "Ninguno"}</p>
+        <p>{selectedItem && selectedItem.title}</p>
+        <p>{selectedItem && selectedItem.author}</p>
+        <p>{selectedItem && selectedItem.description}</p>
+        <p>{selectedItem && selectedItem.price}</p>
+        <p>ID: {selectedItem && selectedItem.id}</p>
+        <p>STOCK seleccionado: {selectedItem && selectedItem.stock}</p>
         <hr />
-        {items.map(({id, name,author, price}) => (
-            <Item 
-                key={id}
-                id = {id}
-                name={name} 
-                author={author}
-                price={price}
-                setSelectedItem={setSelectedItem}
-            />
-        ))}
+        {/*products.map((product) => (
+          <Item key={product.id} {...product} setSelectedItem={setSelectedItem} />
+        ))*/}
+        <ItemList productos={products} setSelectedItem={setSelectedItem} />
 
       </div>
     );
