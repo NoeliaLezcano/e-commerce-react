@@ -1,3 +1,15 @@
+export const product = 
+  {
+    id: "1",
+    image: 'https://res.cloudinary.com/dnxs7gjj2/image/upload/v1644363696/portada_las-tres-hermanas_heather-morris_e86ij4.jpg',
+    title: "Las tres hermanas",
+    author: "Heather Morris",
+    description: "Una novela de supervivencia y esperanza basada en una historia real",
+    price: "2760",
+    stock: 8,
+  }
+
+
 export const products = [
     {
       id: "1",
