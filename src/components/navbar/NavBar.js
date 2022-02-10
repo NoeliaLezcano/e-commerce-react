@@ -1,22 +1,39 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
 import CartWidget from "../../icon/CartWidget";
+import "./NavBar.css";
 
 const NavBar = () => {
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">BookStore</Navbar.Brand>
+        <Navbar.Brand>
+        <Link to="/">BookStore</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Inicio</Nav.Link>
-            <Nav.Link href="#link">Nosotros</Nav.Link>
-            <NavDropdown title="Catalogo" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Novelas</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Comics</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Novedades
+            <NavDropdown title="Categorias" id="basic-nav-dropdown">
+              <NavDropdown.Item>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "activeClass" : undefined
+                  }
+                  to="category/novels"
+                >
+                  Novelas
+                </NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "activeClass" : undefined
+                  }
+                  to="category/comics"
+                >
+                  Comics
+                </NavLink>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

@@ -1,11 +1,10 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ItemCounter from "../item-counter/ItemCount";
 
-const Item = ({ id, image, title, author, description, price, stock, setSelectedItem }) => {
+const Item = ({ id, image, title, author, description, price, stock}) => {
   const [sotckSelected, setSotckSelected] = useState(0);
 
-  const selectItem = () =>
-    setSelectedItem({ id, image, title, author, description, price, stock: sotckSelected });
 
   return (
     <>
@@ -15,7 +14,7 @@ const Item = ({ id, image, title, author, description, price, stock, setSelected
         <h2>Autor: {author}</h2>
         <h2>Precio: ${price} </h2>
         <ItemCounter stock={stock} initial={1} setSotckSelected={setSotckSelected} />
-        <button onClick={selectItem}>Seleccionar producto</button>
+        <Link to={`/item/${id}`}>Seleccionar producto</Link>
       </div>
       <hr />
     </>

@@ -1,49 +1,28 @@
-import { useEffect, useState } from "react";
-import { productsAPI } from "../../helpers/promises";
-import ItemList from "../item-list/ItemList"
+import { useParams } from "react-router-dom";
+import useProducts from "../../hooks/useProducts";
+import Item from "../item/Item";
 
 
 const ItemListContainer = () => {
-  const[selectedItem, setSelectedItem] = useState (null);
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const { id } = useParams();
+  const { products } = useProducts();
 
-  const getProducts = async () => {
-    try {
-      const result = await productsAPI;
-      setProducts(result);
-    } catch (error) {
-      console.log({ error });
-    } finally {
-      setLoading(false);
-      console.log("Finalización del consumo de la API productsAPI");
-    }
-  };
-
-  if (loading) {
-    return <h1>Cargando...</h1>;
-  }
+  const filterProducts = products.filter(({ category }) => category === id);
 
   return (
-      <div>
-        <h3>Producto seleccionado: </h3>
-        <p>{selectedItem && selectedItem.title}</p>
-        <p>{selectedItem && selectedItem.author}</p>
-        <p>{selectedItem && selectedItem.description}</p>
-        <p>{selectedItem && selectedItem.price}</p>
-        <p>ID: {selectedItem && selectedItem.id}</p>
-        <p>STOCK seleccionado: {selectedItem && selectedItem.stock}</p>
-        <hr />
-        {/*products.map((product) => (
-          <Item key={product.id} {...product} setSelectedItem={setSelectedItem} />
-        ))*/}
-        <ItemList productos={products} setSelectedItem={setSelectedItem} />
-
-      </div>
+    <div>
+      <h1>Lista de productos</h1>
+      <hr />
+      {!id &&
+        products.map((product) => {
+          return <Item key={product.id} {...product} />;
+        })}
+      {id &&
+        filterProducts.map((product) => {
+          return <Item key={product.id} {...product} />;
+        })}
+    </div>
     );
 };
 

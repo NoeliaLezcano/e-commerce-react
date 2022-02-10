@@ -1,4 +1,4 @@
-import { products, product } from "../data/products";
+import { products } from "../data/products";
 
 export const productsAPI = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -7,9 +7,3 @@ export const productsAPI = new Promise((resolve, reject) => {
   }, 2000);
 });
 
-export const productAPI = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    // reject("Message Error from Reject");
-    resolve(product);
-  }, 2000);
-});
