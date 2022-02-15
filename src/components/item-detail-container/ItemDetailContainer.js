@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
+import ItemCount from "../item-counter/ItemCount";
 
 const ItemDetailContainer = () => {
   const { products } = useProducts();
@@ -8,12 +9,18 @@ const ItemDetailContainer = () => {
 
   const [selectedItem, setSelectedItem] = useState(null);
 
+
   useEffect(() => {
     if (products.length > 0) {
       const selectedProduct = products.find((product) => product.id === id);
       setSelectedItem(selectedProduct);
     }
   }, [products]);
+
+  const onAdd = (counter) => {
+    console.log({ ...selectedItem, quantity: counter })
+    alert(`Agregaste: ${counter} articulos`)
+}
 
   return (
     <div>
@@ -24,9 +31,13 @@ const ItemDetailContainer = () => {
       <p>{selectedItem && selectedItem.title}</p>
       <p>{selectedItem && selectedItem.autor}</p>
       <p>{selectedItem && selectedItem.description}</p>
-      <p>{selectedItem && selectedItem.price}</p>
-      <p>ID: {selectedItem && selectedItem.id}</p>
-      <p>STOCK seleccionado: {selectedItem && selectedItem.stock}</p>
+      <p>${selectedItem && selectedItem.price}</p>
+      <ItemCount stock={selectedItem && selectedItem.stock} initial={1} onAdd={onAdd}  /> 
+      <div>
+          <Link to='/cart'><button>Terminar la Compra</button></Link>
+          <Link to='/'><button>Seguir Comprando</button></Link>
+      </div>
+
     </div>
   );
 };

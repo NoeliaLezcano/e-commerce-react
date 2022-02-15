@@ -13,7 +13,7 @@ const Item = ({ id, image, title, author, description, price, stock}) => {
         <h2>Título: {title}</h2>
         <h2>Autor: {author}</h2>
         <h2>Precio: ${price} </h2>
-        <ItemCounter stock={stock} initial={1} setSotckSelected={setSotckSelected} />
+     {/*   <ItemCounter stock={stock} initial={1} setSotckSelected={setSotckSelected} />  */}
         <Link to={`/item/${id}`}>Seleccionar producto</Link>
       </div>
       <hr />
