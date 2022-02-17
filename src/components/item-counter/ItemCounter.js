@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const ItemCounter = ({ stock, initial, setSotckSelected, onAdd}) => {
+const ItemCounter = ({ stock, initial, setSotckSelected}) => {
   const [counter, setCounter] = useState(initial);
+
+  useEffect(() => {
+    setSotckSelected(counter);
+  }, [counter]);
 
   const minusCounter = () => {
     if (counter <= initial) return;
@@ -13,13 +17,11 @@ const ItemCounter = ({ stock, initial, setSotckSelected, onAdd}) => {
     setCounter(counter + 1);
   };
 
-
   return (
     <>
       <div>
-        <h1 > {counter}   </h1>
         <button onClick={minusCounter}> - </button>
-        <button onClick={() => onAdd(counter)} disabled={counter < 1 && 'disabled'}> Agregar al Carrito </button>
+        <span>{counter}</span>
         <button onClick={plusCounter}> + </button>
       </div>
     </>

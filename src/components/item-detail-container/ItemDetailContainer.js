@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 import useProducts from "../../hooks/useProducts";
-import ItemCount from "../item-counter/ItemCount";
+import ItemCounter from "../item-counter/ItemCounter";
+
 
 const ItemDetailContainer = () => {
   const { products } = useProducts();
   const { id } = useParams();
+  const { addItem } = useContext(CartContext);
 
   const [selectedItem, setSelectedItem] = useState(null);
+  const [quantity, setQuantity] = useState(0);
 
 
   useEffect(() => {
@@ -17,10 +21,12 @@ const ItemDetailContainer = () => {
     }
   }, [products]);
 
-  const onAdd = (counter) => {
-    console.log({ ...selectedItem, quantity: counter })
-    alert(`Agregaste: ${counter} articulos`)
-}
+  const handleAddToCart = () => {
+    addItem({
+      item: selectedItem,
+      quantity,
+    });
+  };
 
   return (
     <div>
@@ -32,7 +38,12 @@ const ItemDetailContainer = () => {
       <p>{selectedItem && selectedItem.autor}</p>
       <p>{selectedItem && selectedItem.description}</p>
       <p>${selectedItem && selectedItem.price}</p>
-      <ItemCount stock={selectedItem && selectedItem.stock} initial={1} onAdd={onAdd}  /> 
+      <ItemCounter
+        stock={selectedItem?.stock || 10}
+        initial={1}
+        setSotckSelected={setQuantity}
+      />
+      <button onClick={handleAddToCart}>Agregar al carrito</button>
       <div>
           <Link to='/cart'><button>Terminar la Compra</button></Link>
           <Link to='/'><button>Seguir Comprando</button></Link>

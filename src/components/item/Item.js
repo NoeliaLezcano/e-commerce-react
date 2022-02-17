@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import ItemCounter from "../item-counter/ItemCount";
 
 const Item = ({ id, image, title, author, description, price, stock}) => {
   const [sotckSelected, setSotckSelected] = useState(0);
