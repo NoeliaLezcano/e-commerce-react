@@ -10,11 +10,33 @@ export const CartProvider = ({ children }) => {
     setItems([...items, currentItem]);
   };
 
+  const removeCartItem = (cartItemID) => {
+    setItems(items.filter((item) => item.id != cartItemID ));
+  }
+
+  const clearCart = () => {
+    setItems([]);
+  }
+
+  const getTotalPrice = (items) =>{ 
+
+    let totalPrice = 0;
+
+    for(let i =0; i<items.length; i++){
+        totalPrice = totalPrice + (items[i].quantity * items[i].item.price);
+    }
+
+    return totalPrice;
+  } 
+
   return (
     <CartContext.Provider
       value={{
         items,
         addItem,
+        clearCart,
+        removeCartItem,
+        getTotalPrice,
       }}
     >
       {children}

@@ -45,7 +45,7 @@ const ItemDetailContainer = () => {
       />
       <button onClick={handleAddToCart}>Agregar al carrito</button>
       <div>
-          <Link to='/cart'><button>Terminar la Compra</button></Link>
+          <Link to='/cart'><button>Ir al carrito</button></Link>
           <Link to='/'><button>Seguir Comprando</button></Link>
       </div>
 
