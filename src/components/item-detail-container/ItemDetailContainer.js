@@ -6,6 +6,7 @@ import ItemCounter from "../item-counter/ItemCounter";
 
 
 const ItemDetailContainer = () => {
+  
   const { products } = useProducts();
   const { id } = useParams();
   const { addItem } = useContext(CartContext);

@@ -4,6 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCzWVqa5EqBYdg1aDwBZDEI2ktoE4GJES4",
+  authDomain: "e-commerce-lezcano.firebaseapp.com",
+  projectId: "e-commerce-lezcano",
+  storageBucket: "e-commerce-lezcano.appspot.com",
+  messagingSenderId: "283960251",
+  appId: "1:283960251:web:de52b96bdb050f7ce25a9e"
+};
+
+initializeApp(firebaseConfig);
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
