@@ -1,27 +1,31 @@
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { productsAPI } from "../helpers/promises";
 
 const useProducts = () => {
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    getProducts();
-  }, []);
+  useEffect (() => {
 
-  const getProducts = async () => {
-    try {
-      const result = await productsAPI;
-      setProducts(result);
-    } catch (error) {
-      console.log({ error });
-    } finally {
-      console.log("Finalización del consumo de la API productsAPI");
-    }
-  };
+    const db = getFirestore();
+    const itemsCollection = collection(db, "items");  
+    
+    getDocs(itemsCollection).then(snapshot => {
+      setProducts(
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id:doc.id,
+        }))
+      );
+    });
+     
+  }, []);
 
   return {
     products,
   };
+
+
+
 };
 
 export default useProducts;

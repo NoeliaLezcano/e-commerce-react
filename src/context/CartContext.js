@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
     setItems([]);
   }
 
-  const getTotalPrice = (items) =>{ 
+  const getTotalPrice = () =>{ 
 
     let totalPrice = 0;
 
