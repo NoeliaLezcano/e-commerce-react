@@ -1,0 +1,67 @@
+.carrito{
+    border:  1px black solid;
+    border-radius: 20px;
+    margin: 30px 100px;
+}
+
+.carrito button{
+    margin: 8px;
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.producto{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 0.5px black solid;
+}
+
+.producto img{
+    width: 100px;
+}
+
+.producto button{
+    background-color: rgb(255, 92, 92);
+}
+
+.precioTotal{
+    margin-top: 20px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form label{
+    margin: 10px;
+}
+
+form label input{
+    margin-left: 5px;
+}
+
+.idCompra{
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px 100px;
+    background-color: rgb(189, 182, 182);
+}
+
+@media(max-width: 512px){
+    .carrito{
+        margin: 12px;
+    }
+    .producto{
+        display: flex;
+        flex-direction: column;
+    }
+    .idCompra{
+        margin: 10px;
+    }
+}

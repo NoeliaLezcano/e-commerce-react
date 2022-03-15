@@ -1,0 +1,13 @@
+.footer {
+    background-color: rgb(143, 95, 187);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 2em; 
+}
+    
+.footerContact {
+    margin: 2em; }
+  
+.footerCopyright {
+    margin: 2em; }

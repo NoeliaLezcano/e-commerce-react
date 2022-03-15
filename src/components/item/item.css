@@ -1,0 +1,21 @@
+.eachProduct {
+    width: 300px;
+    margin: 20px;
+    /*border: 1px rgb(79, 75, 75) solid;*/
+    padding: 20px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 20px;
+}
+
+.eachProduct button {
+    padding: 2px;
+    text-align: center;
+    background-color: rgb(71, 213, 71);
+    border-radius: 4px;
+}
+
+.eachProduct h2 {
+    font-size: 1.2em;
+    padding: 5px;
+}
+

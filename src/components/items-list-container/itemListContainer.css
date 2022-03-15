@@ -1,0 +1,11 @@
+.titlePage{
+    margin: 15px;
+    font-size: 3em;
+}
+
+.catalogo{
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

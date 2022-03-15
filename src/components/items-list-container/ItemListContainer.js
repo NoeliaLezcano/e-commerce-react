@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import Item from "../item/Item";
 import useProducts from "../../hooks/useProducts";
+import "./itemListContainer.css"
 
 const ItemListContainer = () => {
 
@@ -9,20 +10,19 @@ const ItemListContainer = () => {
 
   const filterProducts = products.filter(({ category }) => category === id);
 
-  console.log(products);
-
   return (
     <div>
-      <h1>Lista de productos</h1>
-      <hr />
-      {!id && products &&
-        products.map(( product ) => {
-          return <Item key={product.id} {...product} />;
-        })}
-      {id && filterProducts &&
-        filterProducts.map((product) => {
-          return <Item key={product.id} {...product} />;
-        })}   
+      <h1 className="titlePage">Catálogo</h1>
+      <div className="catalogo">
+        {!id && products &&
+          products.map(( product ) => {
+            return <Item key={product.id} {...product} />;
+          })}
+        {id && filterProducts &&
+          filterProducts.map((product) => {
+            return <Item key={product.id} {...product} />;
+          })}
+      </div> 
     </div>
     );
 };

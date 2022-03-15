@@ -1,0 +1,12 @@
+#ItemDetailContainer{
+    margin: 2em;
+}
+
+#ItemDetailContainer p{
+    font-size: 1.2em;
+}
+
+#ItemDetailContainer button{
+    margin: 0.2em;
+    border-radius: 8px;
+}

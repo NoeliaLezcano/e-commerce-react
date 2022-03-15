@@ -1,4 +1,23 @@
 .activeClass {
     color: rgb(32, 10, 170);
   }
-  
+
+a, u {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.navbar{
+  position: sticky;
+  top: 0;
+  background-color: rgb(143, 95, 187);
+}
+
+.navbar-nav .dropdown-menu{
+  background-color: rgb(143, 95, 187);
+}
+
+Navbar.Brand{
+  font-size: 4em;
+}

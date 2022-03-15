@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import {addDoc, collection, getFirestore} from "firebase/firestore";
+import "./Cart.css";
 
 const Cart = () => {
   const { items, clearCart, removeCartItem, getTotalPrice } = useContext(CartContext);
@@ -24,7 +25,6 @@ const Cart = () => {
   }
 
   const handleRemove = (cartItemID) => {
-    console.log(cartItemID);
     removeCartItem(cartItemID);
   }
 
@@ -33,6 +33,12 @@ const Cart = () => {
   }
 
   const sendOrder = () => {
+
+    if(buyer.name == '' || buyer.email == '' || buyer.phone == ''){
+      alert("Completa tus datos para realizar la compra.");
+      return;
+    } 
+
     const order = {
       buyer : buyer,
       items : items,
@@ -49,17 +55,20 @@ const Cart = () => {
 
 
   return (
-    <div>
-      <ul>
+    <div className="carrito">  
         {items.map(({ item, quantity }) => (
-          <li>
-            {item.title} - {item.author} - ${item.price} - Cantidad: {quantity}
+          <li className="producto">
+            <img src={item.image} alt="Image" />
+            <h5>{item.title}</h5>
+            <h5>{item.author}</h5>
+            <h5>${item.price}</h5>
+            <h5>Cantidad: {quantity}</h5>
             <button onClick={() =>handleRemove(item.id)}> X </button>
           </li>
         ))}
-        <h3>Precio total: ${getTotalPrice()}</h3>
+        <h3 className="precioTotal">Precio total: ${getTotalPrice()}</h3>
         <form>
-          <label>Nombre:
+          <label>Nombre: 
             <input
               type="text" 
               value={buyer.name}
@@ -67,7 +76,7 @@ const Cart = () => {
               onChange={(e) => setBuyer({...buyer, name: e.target.value})}
             />
           </label>
-          <label>Email:
+          <label>Email: 
             <input
               type="text" 
               value={buyer.email}
@@ -75,7 +84,7 @@ const Cart = () => {
               onChange={(e) => setBuyer({...buyer, email: e.target.value})}
             />
           </label>
-          <label>Teléfono:
+          <label>Teléfono: 
             <input
               type="text" 
               value={buyer.phone}
@@ -85,10 +94,9 @@ const Cart = () => {
           </label>
         </form>
         <button onClick={handleClear}>Eliminar carrito</button>
-        <button onClick={sendOrder}>Terminar compra</button>
-      </ul>
+        <button onClick={sendOrder}>Terminar compra</button>    
       {orderId && (
-        <h1>Compra realizada. El id de tu compra es: {orderId}</h1>
+        <h1 className="idCompra">Compra realizada. El id de tu compra es: {orderId}</h1>
       )}
     </div>
   );

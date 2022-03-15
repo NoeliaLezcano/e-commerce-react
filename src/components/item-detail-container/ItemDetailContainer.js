@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import useProducts from "../../hooks/useProducts";
 import ItemCounter from "../item-counter/ItemCounter";
+import "./ItemDetailContainer.css";
 
 
 const ItemDetailContainer = () => {
@@ -30,7 +31,7 @@ const ItemDetailContainer = () => {
   };
 
   return (
-    <div>
+    <div id="ItemDetailContainer">
       <h3>Producto seleccionado</h3>
       {selectedItem && selectedItem.image && (
         <img src={selectedItem.image} alt="selectedItemImage" />

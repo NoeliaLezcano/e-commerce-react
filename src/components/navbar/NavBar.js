@@ -6,7 +6,7 @@ import "./NavBar.css";
 const NavBar = () => {
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="navbar navbar-bg" expand="lg">
       <Container>
         <Navbar.Brand>
         <Link to="/">BookStore</Link>
